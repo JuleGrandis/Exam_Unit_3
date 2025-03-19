@@ -15,6 +15,8 @@ const alchemicalSymbols = {
     '🜂': 'Salt'
 }
 
+const poem = "Still flows the Icy Lethe, Veiling all ’neath Eldritch Rime.";
+
 export async function fetchData(url, options) {
 
     const response = await fetch(url, options);
@@ -22,7 +24,7 @@ export async function fetchData(url, options) {
 }
 
 export async function handleResponse(data) {
-    
+
     if (data.error) {
         return { error: data.error };
     }
@@ -32,6 +34,18 @@ export async function handleResponse(data) {
         challenge: data.challenge 
     };
 }
+
+function decipherPoem(text) {
+    let answer = "";
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] >= 'A' && text[i] <= 'Z') {
+            answer += text[i];
+        }
+    }
+    return answer;
+}
+
+
 
 function createGameActions(action) {
 
@@ -72,8 +86,9 @@ const submitAnswer = createGameActions('submit');
 (async () => {
     await startGame(PLAYER_NAME);
 
-    const answer = "Gold,Quicksilver,Silver,Iron,Gold";
+    const answerTask1 = "Gold,Quicksilver,Silver,Iron,Gold";
+    const answerTask2 = decipherPoem(poem);
 
-    await submitAnswer(PLAYER_NAME, answer);
+    await submitAnswer(PLAYER_NAME, answerTask2);
 })();
 
