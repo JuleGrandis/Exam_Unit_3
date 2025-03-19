@@ -15,6 +15,7 @@ const alchemicalSymbols = {
     '🜂': 'Salt'
 }
 
+const encryptedCode = "☉☿☽♂☉";
 const poem = "Still flows the Icy Lethe, Veiling all ’neath Eldritch Rime.";
 
 export async function fetchData(url, options) {
@@ -45,7 +46,18 @@ function decipherPoem(text) {
     return answer;
 }
 
+function decodeAlchemicalCode(symbolsString) {
+    let decodedElements = [];
 
+    for (let i = 0; i < symbolsString.length; i++) {
+        const symbol = symbolsString[i];
+        if (alchemicalSymbols[symbol]) {
+            decodedElements.push(alchemicalSymbols[symbol]);
+        }
+    }
+    console.log(decodedElements.join(","));
+    return decodedElements.join(",");
+}
 
 function createGameActions(action) {
 
@@ -86,7 +98,7 @@ const submitAnswer = createGameActions('submit');
 (async () => {
     await startGame(PLAYER_NAME);
 
-    const answerTask1 = "Gold,Quicksilver,Silver,Iron,Gold";
+    const answerTask1 = decodeAlchemicalCode(encryptedCode);
     const answerTask2 = decipherPoem(poem);
 
     await submitAnswer(PLAYER_NAME, answerTask2);
