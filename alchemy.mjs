@@ -22,14 +22,14 @@ export async function fetchData(url, options) {
 }
 
 export async function handleResponse(data) {
-
+    
     if (data.error) {
         return { error: data.error };
     }
 
     return { 
         message: data.message, 
-        nextChallenge: data.next_challenge 
+        challenge: data.challenge 
     };
 }
 
@@ -56,8 +56,8 @@ function createGameActions(action) {
                 console.error(`Error: ${result.error}`);
             } else {
                 console.log(`Message: ${result.message}`);
-                if (result.nextChallenge) {
-                    console.log(`Next Challenge: ${result.nextChallenge}`);
+                if (result.challenge) {
+                    console.log(`Next Challenge: ${result.challenge}`);
                 }
             }
         } catch (error) {
@@ -72,6 +72,8 @@ const submitAnswer = createGameActions('submit');
 (async () => {
     await startGame(PLAYER_NAME);
 
-    await submitAnswer(PLAYER_NAME, 'Gold, Mercury, Silver, Iron, Gold');
+    const answer = "Gold,Quicksilver,Silver,Iron,Gold";
+
+    await submitAnswer(PLAYER_NAME, answer);
 })();
 
