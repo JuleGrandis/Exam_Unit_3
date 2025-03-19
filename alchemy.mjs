@@ -44,3 +44,5 @@ async function submitAnswer (playerName, answer) {
         console.error('Failed to submit answer:', error);
     }
 }
+
+startGame(PLAYER_NAME);
