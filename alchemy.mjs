@@ -3,6 +3,24 @@ import fetch from 'node-fetch';
 const API_URL = 'https://alchemy-kd0l.onrender.com';
 const PLAYER_NAME = 'aleksandnd@uia.no';
 
+async function fetchData(url, options) {
+
+    const response = await fetch(url, options);
+    return response.json();
+}
+
+async function handleResponse(data) {
+
+    if (data.error) {
+        return { error: data.error };
+    }
+
+    return { 
+        message: data.message, 
+        nextChallenge: data.next_challenge 
+    };
+}
+
 async function startGame(playerName) {
 
     try {
