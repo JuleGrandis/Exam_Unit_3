@@ -1,15 +1,27 @@
 import fetch from 'node-fetch';
 
 const API_URL = 'https://alchemy-kd0l.onrender.com';
-const PLAYER_NAME = 'aleksandnd@uia.no';
+const PLAYER_NAME = 'aleksandnb@uia.no';
 
-async function fetchData(url, options) {
+const alchemicalSymbols = {
+    '☽': 'Silver',
+    '☉': 'Gold',
+    '☿': 'Quicksilver',
+    '♀': 'Copper',
+    '♂': 'Iron',
+    '♃': 'Tin',
+    '♄': 'Lead',
+    '🜍': 'Sulfur',
+    '🜂': 'Salt'
+}
+
+export async function fetchData(url, options) {
 
     const response = await fetch(url, options);
     return response.json();
 }
 
-async function handleResponse(data) {
+export async function handleResponse(data) {
 
     if (data.error) {
         return { error: data.error };
@@ -60,6 +72,6 @@ const submitAnswer = createGameActions('submit');
 (async () => {
     await startGame(PLAYER_NAME);
 
-    await submitAnswer(PLAYER_NAME, );
+    await submitAnswer(PLAYER_NAME, 'Gold, Mercury, Silver, Iron, Gold');
 })();
 
