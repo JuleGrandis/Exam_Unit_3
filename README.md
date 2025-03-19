@@ -7,3 +7,5 @@ expected value or not.
 
 (Commit 5 - )
 Code is encoded in alchemical symbols. In order: Gold (Au), Quicksilver(Hg), Silver(Ag), Iron(Fe) and Gold(Au). https://en.wikipedia.org/wiki/Alchemical_symbol
+To make it easier to work with the code later in the game, I decided to start working with FP principals now instead of later when everything is done. After I've completed
+the higher order function, I'm going to run tests.
