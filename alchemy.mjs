@@ -1,30 +1,5 @@
 import fetch from 'node-fetch';
-
-const API_URL = 'https://alchemy-kd0l.onrender.com';
-const PLAYER_NAME = 'aleksandnb@uia.no';
-
-const alchemicalSymbols = {
-    '☽': 'Silver',
-    '☉': 'Gold',
-    '☿': 'Quicksilver',
-    '♀': 'Copper',
-    '♂': 'Iron',
-    '♃': 'Tin',
-    '♄': 'Lead',
-    '🜍': 'Sulfur',
-    '🜂': 'Salt'
-}
-
-const bookCipherIndex = {
-    1: "E",
-    2: "F",
-    3: "F",
-    4: "I",
-    5:
-}
-
-const encryptedCode = "☉☿☽♂☉";
-const poem = "Still flows the Icy Lethe, Veiling all ’neath Eldritch Rime.";
+import { API_URL, PLAYER_NAME, alchemicalSymbols, bookCipherIndex, cipher, encryptedCode, poem } from './consts.mjs';
 
 export async function fetchData(url, options, isJson = true) {
 
@@ -65,6 +40,23 @@ function decodeAlchemicalCode(symbolsString) {
     }
     console.log(decodedElements.join(","));
     return decodedElements.join(",");
+}
+
+function decodeNumberCipher (cipher) {
+    const wordGroups = cipher.split(',');
+
+    const decodedWords = wordGroups.map(group => {
+        const numbers = group
+            .trim()
+            .split(/\s+/)
+            .map(Number);
+
+        const letters = numbers.map(num => bookCipherIndex[num]).join('');
+
+        return letters;
+    });
+
+    return decodedWords.join(' ');
 }
 
 function createGameActions(action) {
