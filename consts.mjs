@@ -10,7 +10,10 @@ const alchemicalSymbols = {
     '♃': 'Tin',
     '♄': 'Lead',
     '🜍': 'Sulfur',
-    '🜂': 'Salt'
+    '🜂': 'Fire',
+    '🜄': 'Water',
+    '🜁': 'Air',
+    '🜔': 'Salt'
 }
 
 const bookCipherIndex = {

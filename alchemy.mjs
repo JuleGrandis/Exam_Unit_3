@@ -1,23 +1,6 @@
-import fetch from 'node-fetch';
 import { API_URL, PLAYER_NAME, alchemicalSymbols, bookCipherIndex, cipher, encryptedCode, poem } from './consts.mjs';
+import { fetchData, handleResponse } from './apiFunc.mjs';
 
-export async function fetchData(url, options, isJson = true) {
-
-    const response = await fetch(url, options);
-    return isJson ? response.json() : response.text();
-}
-
-export async function handleResponse(data) {
-
-    if (data.error) {
-        return { error: data.error };
-    }
-
-    return { 
-        message: data.message, 
-        challenge: data.challenge 
-    };
-}
 
 function decipherPoem(text) {
     let answer = "";
@@ -38,25 +21,37 @@ function decodeAlchemicalCode(symbolsString) {
             decodedElements.push(alchemicalSymbols[symbol]);
         }
     }
-    console.log(decodedElements.join(","));
+    //console.log(decodedElements.join(","));
     return decodedElements.join(",");
 }
 
 function decodeNumberCipher (cipher) {
     const wordGroups = cipher.split(',');
 
-    const decodedWords = wordGroups.map(group => {
+    let decodedWords = wordGroups.map(group => {
         const numbers = group
             .trim()
             .split(/\s+/)
             .map(Number);
 
-        const letters = numbers.map(num => bookCipherIndex[num]).join('');
-
-        return letters;
+        return numbers.map(num => bookCipherIndex[num]).join('');
     });
 
-    return decodedWords.join(' ');
+    const targetWords = [ "mercury", "copper", "sulfur", "heat", "salt", "water", "gold", "air"];
+    let item, value, res = "";
+    for(let i=0;i<decodedWords.length;i++) { 
+        if(targetWords.includes(decodedWords[i].toLowerCase())) { 
+            for([item, value] of Object.entries(alchemicalSymbols)) { 
+                if(value.toLowerCase() === decodedWords[i].toLowerCase()) { 
+                    res+=item; 
+                }
+            }
+        }
+    }
+    
+    decodedWords = decodedWords.join(" ");
+
+    return { decodedWords, res, targetWords };
 }
 
 function createGameActions(action) {
@@ -78,12 +73,13 @@ function createGameActions(action) {
 
         try {
             if (action === 'clue') {
+                
                 const data = await fetchData(url, options, false);
                 console.log(`Clue: ${data}`);
             } else {
+                console.log(options);
                 const data = await fetchData(url, options);
                 const result = await handleResponse(data);
-
                 if(result.error) {
                     console.error(`Error: ${result.error}`);
                 } else {
@@ -108,8 +104,10 @@ const getClue = createGameActions('clue');
 
     const answerTask1 = decodeAlchemicalCode(encryptedCode);
     const answerTask2 = decipherPoem(poem);
+    const answerTask3 = decodeNumberCipher(cipher).res;
+    console.log(answerTask3);
 
-    await submitAnswer(PLAYER_NAME, answerTask2);
+    await submitAnswer(PLAYER_NAME, answerTask3);
 
     //await getClue(PLAYER_NAME);
 })();
