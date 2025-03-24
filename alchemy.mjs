@@ -1,5 +1,5 @@
 import { API_URL, PLAYER_NAME, cipher, encryptedCode, poem } from './consts.mjs';
-import { fetchData, handleResponse } from './apiFunc.mjs';
+import { fetchData, handleResponse } from './functions/apiFunc.mjs';
 
 function createGameActions(action) {
 

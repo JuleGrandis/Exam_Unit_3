@@ -1,4 +1,4 @@
-import { alchemicalSymbols, bookCipherIndex,  } from "./consts.mjs";
+import { alchemicalSymbols, bookCipherIndex,  } from "../consts.mjs";
 
 function decipherPoem(text) {
     let answer = "";
