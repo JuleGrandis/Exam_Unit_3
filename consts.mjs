@@ -2,19 +2,19 @@ const API_URL = 'https://alchemy-kd0l.onrender.com';
 const PLAYER_NAME = 'aleksandnb@uia.no';
 
 const alchemicalSymbols = {
-    '☽': 'Silver',
-    '☉': 'Gold',
-    '☿': 'Quicksilver',
-    '♀': 'Copper',
-    '♂': 'Iron',
-    '♃': 'Tin',
-    '♄': 'Lead',
-    '🜍': 'Sulfur',
-    '🜂': 'Fire',
-    '🜄': 'Water',
-    '🜁': 'Air',
-    '🜔': 'Salt'
-}
+    'Silver': '☽',
+    'Gold': '☉',
+    'Quicksilver': '☿',
+    'Copper': '♀',
+    'Iron': '♂',
+    'Tin': '♃',
+    'Lead': '♄',
+    'Sulfur': '🜍',
+    'Fire': '🜂',
+    'Water': '🜄',
+    'Air': '🜁',
+    'Salt': '🜔'
+};
 
 const bookCipherIndex = {
     1: "E",

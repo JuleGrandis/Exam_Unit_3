@@ -38,3 +38,7 @@ Input the formula for the fourth element;
 Combine Mercury, Copper and Sulfur over heat
 add salt and water
 infuse gold through air"
+
+There's definitely something I'm missing, but I'm going a long with. My first though is to create a loop that
+return the alchemical symbols for each of the mentioned elements in the decipher text. To create the function, first I decode the the message,
+then I create for loops to run through the targetWords to match them to corresponding 
