@@ -16,13 +16,18 @@ function decipherText(text) {
 function decodeAlchemicalCode(symbolsString) {
     let decodedElements = [];
 
+    const symbolToElement = {};
+    for (const [element, symbol] of Object.entries(alchemicalSymbols)) {
+        symbolToElement[symbol] = element;
+    }
+
     for (let i = 0; i < symbolsString.length; i++) {
         const symbol = symbolsString[i];
-        if (alchemicalSymbols[symbol]) {
-            decodedElements.push(alchemicalSymbols[symbol]);
+        if (symbolToElement[symbol]) {
+            decodedElements.push(symbolToElement[symbol]);
         }
     }
-    //console.log(decodedElements.join(","));
+    console.log(decodedElements.join(","));
     return decodedElements.join(",");
 }
 
@@ -67,7 +72,7 @@ function decodeNumberCipher (cipher) {
     return { decodedWords, res, targetWords };
 }
 
-function decipherTask (task, symbolGrid) {
+function decipherTask (task) {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     const newAlphabet = 'HOPSUMDTLKWIBCNYERGJQXVZFA';
 
@@ -77,6 +82,18 @@ function decipherTask (task, symbolGrid) {
             return index >= 0 ? alphabet[index] : char;
         }).join('');
     }
+
+    return task.split('\n').map(line => {
+        return line.split(' ').map(word => {
+            const decipheredWord = decipher(word);
+
+            const symbolKey = Object.keys(alchemicalSymbols).find(
+                key => key.toUpperCase() === decipheredWord.toUpperCase()
+            );
+
+            return symbolKey ? alchemicalSymbols[symbolKey] : word;
+        }).join(' ');
+    }).join('\n');
 }
 
 //console.log(decipherText(taskText).answer);

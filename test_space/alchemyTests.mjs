@@ -1,6 +1,6 @@
 import test from "./test.mjs";
 import { handleResponse, fetchData } from "../functions/apiFunc.mjs";
-import { decipherText } from "../functions/taskFunctions.mjs";
+import { decipherText, decodeAlchemicalCode } from "../functions/taskFunctions.mjs";
 
 const API_URL = 'https://alchemy-kd0l.onrender.com/start?player=aleksandnb@uia.no';
 const testText = 'Peter Only Knew Elephants Make Odd Noises.'
@@ -35,3 +35,5 @@ tester.isEqual(decipherText("ÄÖÜ").answer, "", 'Testing with non-ASCII upperc
 tester.isEqual(decipherText("ÄÖÜ").count, 0, 'Testing count with non-ASCII uppercase letters, should return 0');
 //#endregion
 
+//#region decodeAlchemicalCode function
+tester.isEqual(decodeAlchemicalCode('♂☉'), 'Iron,Gold', 'Testing with regular input, should return as text')
