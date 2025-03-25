@@ -8,7 +8,9 @@ export async function fetchData(url, options, isJson = true) {
 }
 
 export async function handleResponse(data) {
+    
     //console.log(data); // For debugging
+    
     if (data.error) {
         return { error: data.error };
     }

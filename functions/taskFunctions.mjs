@@ -1,4 +1,4 @@
-import { alchemicalSymbols, bookCipherIndex, taskText, cipherCode, alchemicalSymbolList  } from "../consts.mjs";
+import { alchemicalSymbols, bookCipherIndex } from "../consts.mjs";
 
 function decipherText(text) {
     let answer = "";
@@ -32,6 +32,7 @@ function decodeAlchemicalCode(symbolsString) {
 }
 
 function decodeNumberCipher (cipher) {
+
     const wordGroups = cipher.split(',');
 
     let decodedWords = wordGroups.map(group => {
@@ -95,8 +96,5 @@ function decipherTask (task) {
         }).join(' ');
     }).join('\n');
 }
-
-//console.log(decipherText(taskText).answer);
-//console.log(decipherTask(cipherCode, alchemicalSymbolList))
 
 export { decipherText, decodeAlchemicalCode, decodeNumberCipher, decipherTask};

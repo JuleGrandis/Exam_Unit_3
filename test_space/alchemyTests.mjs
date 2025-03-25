@@ -1,13 +1,12 @@
 import test from "./test.mjs";
 import { handleResponse, fetchData } from "../functions/apiFunc.mjs";
-import { decipherText, decodeAlchemicalCode } from "../functions/taskFunctions.mjs";
+import { decipherText, decodeAlchemicalCode, decodeNumberCipher } from "../functions/taskFunctions.mjs";
 
 const API_URL = 'https://alchemy-kd0l.onrender.com/start?player=aleksandnb@uia.no';
 const testText = 'Peter Only Knew Elephants Make Odd Noises.'
-const testText1 = ''
+const testText2 = ''
 
 const tester = test("Function test");
-
 
 //#region API error tests
 
@@ -46,4 +45,13 @@ tester.isEqual(decodeAlchemicalCode('♂♔'), 'Iron', 'Testing with unicode, sh
 tester.isEqual(decodeAlchemicalCode('♂ ♂'), 'Iron,Iron', 'Testing with space inbetween, should still return connected with ","');
 //#endregion
 
-//#region 
+//#region decodeNumberCipher function
+tester.isEqual(decodeNumberCipher("").res, "", 'Testing empty string, should return empty');
+tester.isEqual(decodeNumberCipher("").decodedWords, "", 'Testing empty string, should return empty');
+tester.isEqual(decodeNumberCipher("270 24 17 1 23").res, "🜄", 'Testing with normal input, should return alchemical symbol.');
+tester.isEqual(decodeNumberCipher("270 24 17 1 23").decodedWords, "WATER", 'Testing with normal input , should return the decoded word.');
+tester.isEqual(decodeNumberCipher("   270     24 17 1   23").decodedWords, "WATER", 'Testing with normal input but uneven spacing , should return the decoded word.');
+tester.isEqual(decodeNumberCipher("270   24 17   1   23").res, "🜄", 'Testing with normal input with uneven spacing , should return the alchemical symbol.');
+tester.isEqual(decodeNumberCipher("1 1 1 1").res, "", 'Testing with cipher that dont correspond to anything, should return empty');
+tester.isEqual(decodeNumberCipher("1 1 1 1").decodedWords, "EEEE", 'Testing with cipher that just correspond with a letter not a word or symbol, should return the letters');
+//#endregion
