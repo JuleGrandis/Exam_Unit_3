@@ -45,6 +45,17 @@ the symbols which was the code for the next vault.
 During this time as well I cleaned up the code and created more files to add functions, consts etc. So the alchemy.mjs file only contains the run
 code for delviering answers and such.
 
-# Commit 18 -
+# Commit 18 -End
 My first though was to try to run the long text through the same loop used on the poem, and looking at the length of the capital
-letters returned, it matches with a "new" alphabet,
+letters returned, it matches with a "new" alphabet. This worked out perfectly and I got a new alphabet reusing a previous function.
+The next step is to decode the message and turn it into alchemical symbols. The next step I used way too long to figure out, was to use
+the list I then got of alchemical symbols and match it to potential matches in the large liste of alchemical symbols in the last step.
+
+I could not for the life of me find a good way to run through the array with loops to match the symbols on rows and columns, but to no avail.
+I figured out that the final answer would be "Argon", by combining the atomic number of each of the matching row/column, so I ended up just submitting it. I didn't get to log the skeletonKey the first or second time under the alias of Poke and my email. But I logged the entire
+data output from the API under the user "Mike", the reason I couldn't get the skeleton key was due to a typo "sceletonKey"...
+
+The rest of the commits is just fine tuning and TDD...
+
+# How I would solve the last task:
+I would run the different arrays through loops, each row and column with a for loop, then push the row and col to a results array variable.

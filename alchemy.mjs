@@ -31,11 +31,10 @@ function createGameActions(action) {
                 const result = await handleResponse(data);
                 if(result.error) {
                     console.error(`Error: ${result.error}`);
-                } else {
+                } else if (result.message && !result.challenge) { 
                     console.log(`Message: ${result.message}`);
-                    if (result.challenge) {
-                        console.log(`Next Challenge: ${result.challenge}`);
-                    }
+                } else if (result.challenge) {
+                    console.log(`Next Challenge: ${result.challenge}`);
                 }
             }
         } catch (error) {
@@ -47,16 +46,16 @@ function createGameActions(action) {
 const startGame = createGameActions('start');
 const submitAnswer = createGameActions('submit');
 const getClue = createGameActions('clue');
-
+;
 (async () => {
     await startGame(PLAYER_NAME);
 
     const answerTask1 = decodeAlchemicalCode(encryptedCode);
-    const answerTask2 = decipherText(poem);
+    const answerTask2 = decipherText(poem).answer;
     const answerTask3 = decodeNumberCipher(cipher).res;
-    console.log(answerTask3);
+    const answerTask4 = "Argon";
 
-    await submitAnswer(PLAYER_NAME, answerTask3);
+    await submitAnswer(PLAYER_NAME, answerTask4);
 
     //await getClue(PLAYER_NAME);
 })();

@@ -5,7 +5,7 @@ const alchemicalSymbols = {
     'Silver': '☽',
     'Gold': '☉',
     'Quicksilver': '☿',
-    'Mercury': '☿',
+    //'Mercury': '☿',
     'Copper': '♀',
     'Iron': '♂',
     'Tin': '♃',
@@ -18,7 +18,7 @@ const alchemicalSymbols = {
     'Earth': '♁'
 };
 
-export const elements = [
+const elements = [
     { name: "Hydrogen", atomicNumber: 1 },
     { name: "Helium", atomicNumber: 2 },
     { name: "Lithium", atomicNumber: 3 },
@@ -188,7 +188,13 @@ const alchemicalSymbolList = `
 🜄 ♃ ☉ 🜁 ♀ 🜃 ☿ ☿ ♀ ♄ 🜃 ♂ 🜂 ☿ ♃ ☉ ♀ ☉ 🜄 ☽ 🜃 ♀ ♀ ♄ ♃ ♀ 🜂 ☉ ☉
 ☉ ☉ 🜂 ♂ 🜁 🜁 ♄ ☿ ♂ ☿ ☿ ☉ ☽ 🜃 ♀ ♄ ♃ ♀ ♀ 🜃 ♀ ♂ 🜁 ♂ 🜂 ♄ ☿ ☿ ♀
 ☿ 🜄 ♄ ♃ ♄ ☽ ♃ ♀ ♃ 🜃 🜂 🜄 🜂 ☽ ☿ ☉ ☿ 🜂 ☽ 🜂 ♃ ♂ 🜄 🜃 ☿ ♄ ♄ ☽ 🜂
-`.split(/\s+/).filter(symbol => symbol.trim() !== '');
+`;
+
+const symbolArray = alchemicalSymbolList
+    .trim()
+    .split('\n')
+    .map(row => row.trim().split(/\s+/));
+
 //#endregion
 
-export { API_URL, PLAYER_NAME, alchemicalSymbols, bookCipherIndex, cipher, encryptedCode, poem, taskText, cipherCode, alchemicalSymbolList };
+export { API_URL, PLAYER_NAME, alchemicalSymbols, bookCipherIndex, cipher, encryptedCode, poem, taskText, cipherCode, alchemicalSymbolList, elements };

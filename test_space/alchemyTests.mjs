@@ -4,6 +4,7 @@ import { decipherText, decodeAlchemicalCode } from "../functions/taskFunctions.m
 
 const API_URL = 'https://alchemy-kd0l.onrender.com/start?player=aleksandnb@uia.no';
 const testText = 'Peter Only Knew Elephants Make Odd Noises.'
+const testText1 = ''
 
 const tester = test("Function test");
 
