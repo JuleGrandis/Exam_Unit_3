@@ -27,7 +27,7 @@ function decodeAlchemicalCode(symbolsString) {
             decodedElements.push(symbolToElement[symbol]);
         }
     }
-    console.log(decodedElements.join(","));
+   // console.log(decodedElements.join(","));
     return decodedElements.join(",");
 }
 
@@ -97,6 +97,6 @@ function decipherTask (task) {
 }
 
 //console.log(decipherText(taskText).answer);
-console.log(decipherTask(cipherCode, alchemicalSymbolList))
+//console.log(decipherTask(cipherCode, alchemicalSymbolList))
 
 export { decipherText, decodeAlchemicalCode, decodeNumberCipher, decipherTask};

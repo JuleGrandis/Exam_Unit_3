@@ -36,4 +36,13 @@ tester.isEqual(decipherText("ÄÖÜ").count, 0, 'Testing count with non-ASCII up
 //#endregion
 
 //#region decodeAlchemicalCode function
-tester.isEqual(decodeAlchemicalCode('♂☉'), 'Iron,Gold', 'Testing with regular input, should return as text')
+tester.isEqual(decodeAlchemicalCode('♂☉'), 'Iron,Gold', 'Testing with regular input, should return as text');
+tester.isEqual(decodeAlchemicalCode(""), "", 'Testing handling of empty input, should return empty');
+tester.isEqual(decodeAlchemicalCode('XYZ'), "", 'Testing handling of normal letters, should return empty');
+tester.isEqual(decodeAlchemicalCode('♂#☉'), 'Iron,Gold', 'Testing with other characters in string, should only return elements');
+tester.isEqual(decodeAlchemicalCode('♂♂♂'), 'Iron,Iron,Iron', 'Testing with repeated inputs, should return all');
+tester.isEqual(decodeAlchemicalCode('♂♔'), 'Iron', 'Testing with unicode, should only return element');
+tester.isEqual(decodeAlchemicalCode('♂ ♂'), 'Iron,Iron', 'Testing with space inbetween, should still return connected with ","');
+//#endregion
+
+//#region 
