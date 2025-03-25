@@ -1,5 +1,7 @@
 import { API_URL, PLAYER_NAME, cipher, encryptedCode, poem } from './consts.mjs';
 import { fetchData, handleResponse } from './functions/apiFunc.mjs';
+import { decipherText, decodeAlchemicalCode, decodeNumberCipher, decipherTask } from './functions/taskFunctions.mjs';
+
 
 function createGameActions(action) {
 
@@ -50,7 +52,7 @@ const getClue = createGameActions('clue');
     await startGame(PLAYER_NAME);
 
     const answerTask1 = decodeAlchemicalCode(encryptedCode);
-    const answerTask2 = decipherPoem(poem);
+    const answerTask2 = decipherText(poem);
     const answerTask3 = decodeNumberCipher(cipher).res;
     console.log(answerTask3);
 
